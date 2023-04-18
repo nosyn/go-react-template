@@ -1,0 +1,46 @@
+version: "3.8"
+
+networks:
+  web-network:
+  server-network:
+
+services:
+  # Web Server
+  server:
+    build:
+      context: ./server
+      # Correct the path to your Dockerfile
+      dockerfile: Dockerfile.dev
+    # Important to bind/mount your codebase dir to /app dir for live reload
+    volumes:
+      - ./server/:/app
+    networks:
+      - server-network
+    environment:
+      PORT: 5000
+
+  # Web
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile.dev
+    # Important to bind/mount your codebase dir to /app dir for live reload
+    volumes:
+      - ./web/src/:/app/src
+      - ./web/public/:/app/public
+    networks:
+      - web-network
+    environment:
+      PORT: 3000
+
+  # Ingress
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    networks:
+        - web-network
+        - server-network
+    ports:
+      - 8080:8080
