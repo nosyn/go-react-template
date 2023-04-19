@@ -11,5 +11,4 @@ RUN pnpm install
 # Ensure eslint does not run
 ENV DISABLE_ESLINT_PLUGIN=true
 
-
 CMD ["pnpm", "dev"]
