@@ -26,8 +26,8 @@ services:
       dockerfile: Dockerfile.dev
     # Important to bind/mount your codebase dir to /app dir for live reload
     volumes:
-      - ./web/src/:/app/src
-      - ./web/public/:/app/public
+      - ./web/src:/app/src
+      - ./web/public:/app/public
     networks:
       - web-network
     environment:
