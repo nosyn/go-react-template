@@ -11,9 +11,9 @@ func main() {
 
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
+			"message": "pongg",
 		})
 	})
 
-	r.Run("0.0.0.0:5000")
+	r.Run("0.0.0.0:4000")
 }
